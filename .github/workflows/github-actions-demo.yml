@@ -25,14 +25,6 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-      - name: Fetch latest changes
-        run: |
-          git fetch origin
-
-      - name: Rebase branch
-        run: |
-          git rebase origin/feature-branch || git merge origin/feature-branch
-
       - name: Create a branch
         run: | 
           git checkout -b feature-branch
