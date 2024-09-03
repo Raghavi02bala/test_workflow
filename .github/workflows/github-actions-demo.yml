@@ -1,4 +1,4 @@
-name: Manual Trigger Workflow
+name: Kubeflow
 
 on:
   workflow_dispatch:
