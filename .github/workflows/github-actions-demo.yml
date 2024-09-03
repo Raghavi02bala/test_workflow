@@ -1,0 +1,22 @@
+name: Manual Trigger Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      team_name:
+        description: 'Name of your team'
+        required: true
+      initiative_name:
+        description: 'Name of the initiative'
+        required: true
+      intitiative_id:
+        description: 'Initiative Id'
+        required: true
+
+jobs:
+  run-job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Use the input
+      run: echo "Input values ${{ github.event.inputs.team_name }}, ${{github.event.inputs.initiative_name}}, ${{github.event.inputs.intitiative_id}}"
+      
