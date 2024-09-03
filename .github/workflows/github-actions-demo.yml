@@ -40,10 +40,9 @@ jobs:
         
       - name: Commit and push changes
         run: |
-          git pull
+          git fetch origin
           git add "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
           git commit -m 'Add config.json file'
-          git push origin feature-branch
           
       - name: Create a pull request
         uses: peter-evans/create-pull-request@v7
