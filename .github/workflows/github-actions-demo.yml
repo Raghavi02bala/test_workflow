@@ -49,6 +49,7 @@ jobs:
         with:
           commit-message: created config file
           branch: feature-branch
+          base: main
         
 
     
