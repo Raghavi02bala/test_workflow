@@ -1,4 +1,4 @@
-name: Kubeflow
+name: Kubeflow_v1
 
 on:
   workflow_dispatch:
