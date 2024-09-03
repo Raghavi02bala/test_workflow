@@ -17,7 +17,8 @@ jobs:
   kubeflow-workflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
       - name: Setup config
         run: |
