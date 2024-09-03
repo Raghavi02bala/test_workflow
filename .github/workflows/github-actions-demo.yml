@@ -14,9 +14,42 @@ on:
         required: true
 
 jobs:
-  run-job:
+  kubeflow-workflow:
     runs-on: ubuntu-latest
     steps:
-    - name: Use the input
-      run: echo "Input values ${{ github.event.inputs.team_name }}, ${{github.event.inputs.initiative_name}}, ${{github.event.inputs.intitiative_id}}"
-      
+    - name: Create a repo
+    - uses: actions/checkout@v4
+
+    - name: Setup config
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+
+    - name: Create a branch
+      run: | 
+        git checkout -b feature-branch
+        
+    - name: Create config.json
+      run: |
+          mkdir -p "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}"
+          echo '{
+            "team_name": "${{ github.event.inputs.team_name }}",
+            "initiative_name": "${{ github.event.inputs.initiative_name }}",
+            "initiative_id": "${{ github.event.inputs.initiative_id }}"
+          }' > "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
+        
+    - name: Commit and push changes
+      run: |
+        git add config.json
+        git commit -m 'Add config.json file'
+        git push origin feature-branch
+
+    # Step 6: Create a pull request
+    - name: Create a pull request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        commit-message: created config file
+        branch: feature-branch
+        
+
+    
