@@ -45,7 +45,7 @@ jobs:
           file: "cloud_sql/some.py"
 
       - name: file exists
-        if: steps.check_files.outputs.file_exists==='true'
+        if: steps.check_files.outputs.file_exists == 'true'
         run: echo Argo CD file exists
         
       - name: Commit and push changes
