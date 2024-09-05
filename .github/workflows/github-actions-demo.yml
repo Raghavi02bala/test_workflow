@@ -37,6 +37,16 @@ jobs:
             "initiative_name": "${{ github.event.inputs.initiative_name }}",
             "initiative_id": "${{ github.event.inputs.initiative_id }}"
           }' > "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
+
+      - name: Check if argoCD appset exists
+        id: check_files
+        uses: andstor/file-existence-action@v3
+        with: 
+          file: "cloud_sql/some.py"
+
+      - name: file exists
+        if: steps.check_files.outputs.file_exists==='true'
+        run: echo Argo CD file exists
         
       - name: Commit and push changes
         run: |
