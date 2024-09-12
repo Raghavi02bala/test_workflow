@@ -29,6 +29,7 @@ jobs:
         run: | 
           BRANCH_NAME="feature-branch-${{github.event.inputs.team_name}}-${{github.event.inputs.initiative_id}}"
           git checkout -b "$BRANCH_NAME"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_ENV
         
       - name: Create config.json
         run: |
@@ -59,7 +60,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: created config file
-          branch: feature-branch
+          branch: ${{env.branch}}
           base: main
         
 
