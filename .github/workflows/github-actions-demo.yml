@@ -27,7 +27,7 @@ jobs:
 
       - name: Create a branch
         run: | 
-          BRANCH_NAME="feature-branch-${{github.event.inputs.team_name}}-${{github.event.inputs.initiative_id}}"
+          BRANCH_NAME="feature-branch"
           git checkout -b "$BRANCH_NAME"
         
       - name: Create config.json
