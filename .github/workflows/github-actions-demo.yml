@@ -28,7 +28,6 @@ jobs:
       - name: Create a branch
         run: | 
           git checkout -b feature-branch
-          echo BRANCH_NAME
         
       - name: Create config.json
         run: |
