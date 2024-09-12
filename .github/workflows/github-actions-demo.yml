@@ -9,7 +9,7 @@ on:
       initiative_name:
         description: 'Name of the initiative'
         required: true
-      intitiative_id:
+      initiative_id:
         description: 'Initiative Id'
         required: true
 
