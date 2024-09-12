@@ -28,8 +28,7 @@ jobs:
       - name: Create a branch
         run: | 
           BRANCH_NAME="feature-branch-${{github.event.inputs.team_name}}-${{github.event.inputs.initiative_id}}"
-          git checkout -b "$BRANCH_NAME"
-          echo "branch=$BRANCH_NAME" >> $GITHUB_ENV
+          git checkout -b feature_branch
         
       - name: Create config.json
         run: |
@@ -55,13 +54,12 @@ jobs:
           git fetch origin
           git add "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
           git commit -m 'Add config.json file'
-          git push origin ${{env.branch}}
           
       - name: Create a pull request
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: created config file
-          branch: ${{env.branch}}
+          branch: feature_branch
           base: main
         
 
