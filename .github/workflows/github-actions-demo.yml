@@ -59,7 +59,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: created config file
-          branch: "feature-branch-${{github.event.inputs.team_name}}-${{github.event.inputs.initiative_id}}"
+          branch: feature-branch-${{github.event.inputs.team_name}}-${{github.event.inputs.initiative_id}}
           base: main
         
 
