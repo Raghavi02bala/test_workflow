@@ -3,15 +3,29 @@ name: Kubeflow_v1
 on:
   workflow_dispatch:
     inputs:
-      team_name:
-        description: 'Name of your team'
+      environment:
+        description: 'Name of the environment'
         required: true
-      initiative_name:
-        description: 'Name of the initiative'
+      hostname:
+        description: 'Name of the host'
         required: true
       initiative_id:
         description: 'Initiative Id'
         required: true
+      initiative_name:
+        description: 'Name of the initiative'
+        required: true
+      k8s_namespace:
+        description: 'K8s Namespace'
+        required: true
+      team_id:
+        description: 'Team Id'
+        required: true
+      team_name:
+        description: 'Name of your team'
+        required: true
+
+
 
 jobs:
   kubeflow-workflow:
@@ -33,9 +47,13 @@ jobs:
         run: |
           mkdir -p "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}"
           echo '{
-            "team_name": "${{ github.event.inputs.team_name }}",
+            "environment": "${{ github.event.inputs.environment }}",
+            "hostname": "${{ github.event.inputs.hostname }}",
+            "initiative_id": "${{ github.event.inputs.initiative_id }}",
             "initiative_name": "${{ github.event.inputs.initiative_name }}",
-            "initiative_id": "${{ github.event.inputs.initiative_id }}"
+            "k8s_namespace": "${{ github.event.inputs.k8s_namespace }}",
+            "team_id": "${{ github.event.inputs.team_id }}",
+            "team_name": "${{ github.event.inputs.team_name }}"
           }' > "${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
 
       - name: Check if argoCD appset exists
