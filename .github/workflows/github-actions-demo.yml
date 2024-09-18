@@ -42,10 +42,6 @@ jobs:
       - name: Create a branch
         run: | 
           git checkout -b feature-branch
-
-      - name: Push feature-branch to origin
-        run: |
-          git push -u origin feature-branch
         
       - name: Create config.json
         run: |
