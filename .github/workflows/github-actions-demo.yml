@@ -1,0 +1,84 @@
+name: Kubeflow_v1
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Name of the environment'
+        required: true
+      hostname:
+        description: 'Name of the host'
+        required: true
+      initiative_id:
+        description: 'Initiative Id'
+        required: true
+      initiative_name:
+        description: 'Name of the initiative'
+        required: true
+      k8s_namespace:
+        description: 'K8s Namespace'
+        required: true
+      team_id:
+        description: 'Team Id'
+        required: true
+      team_name:
+        description: 'Name of your team'
+        required: true
+
+
+
+jobs:
+  kubeflow-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Setup config
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+      - name: Create a branch
+        run: | 
+          git checkout -b feature-branch
+        
+      - name: Create config.json
+        run: |
+          mkdir -p "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}"
+          echo '{
+            "environment": "${{ github.event.inputs.environment }}",
+            "hostname": "${{ github.event.inputs.hostname }}",
+            "initiative_id": "${{ github.event.inputs.initiative_id }}",
+            "initiative_name": "${{ github.event.inputs.initiative_name }}",
+            "k8s_namespace": "${{ github.event.inputs.k8s_namespace }}",
+            "team_id": "${{ github.event.inputs.team_id }}",
+            "team_name": "${{ github.event.inputs.team_name }}"
+          }' > "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
+
+      - name: Check if argoCD appset exists
+        id: check_files
+        uses: andstor/file-existence-action@v3
+        with: 
+          files: "cloud-sql/**/config.json"
+
+      - name: file exists
+        if: steps.check_files.outputs.file_exists == 'true'
+        run: echo Argo CD file exists
+
+      - name: file does not exit
+        if: steps.check_files.outputs.file_exists == 'false'
+        run: echo Argo CD file does not exists
+        
+      - name: Commit and push changes
+        run: |
+          git fetch origin
+          git add "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
+          git commit -m 'Add config.json file'
+          
+      - name: Create a pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: created config file
+          branch: feature-branch
+          base: main
