@@ -85,7 +85,7 @@ jobs:
       - name: Commit Cloud SQL instance
         if: steps.check_files.outputs.file_exists == 'false'
         run: |
-          git add "cloud-sql/deployments/${{ github.event.inputs.team_name }/config.json"
+          git add "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
 
       - name: Push Files
         run: |
