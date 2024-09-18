@@ -68,12 +68,27 @@ jobs:
 
       - name: file does not exit
         if: steps.check_files.outputs.file_exists == 'false'
-        run: echo Argo CD file does not exists
+        run: |
+          mkdir -p "cloud-sql/deployments/${{ github.event.inputs.team_name }}"
+          echo '{
+            "environment": "${{ github.event.inputs.environment }}",
+            "team_id": "${{ github.event.inputs.team_id }}",
+            "team_name": "${{ github.event.inputs.team_name }}"
+          }' > "cloud-sql/deployments/${{ github.event.inputs.team_name }/config.json"
+
         
-      - name: Commit and push changes
+      - name: Commit kubeflow instance
         run: |
           git fetch origin
           git add "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
+
+      - name: Commit Cloud SQL instance
+        if: steps.check_files.outputs.file_exists == 'false'
+        run: |
+          git add "cloud-sql/deployments/${{ github.event.inputs.team_name }/config.json"
+
+      - name: Push Files
+        run: |
           git commit -m 'Add config.json file'
           
       - name: Create a pull request
