@@ -1,0 +1,9 @@
+{
+  "environment": "dev",
+  "hostname": "CA",
+  "initiative_id": "7",
+  "initiative_name": "init_new7",
+  "k8s_namespace": "nul",
+  "team_id": "7",
+  "team_name": "name"
+}
