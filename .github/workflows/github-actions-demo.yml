@@ -96,6 +96,6 @@ jobs:
 
       - name: Auto merge
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.pat_value }}
         run: |
           gh pr merge ${{ steps.create-pull-request.outputs.pull-request-number }} -m -d
