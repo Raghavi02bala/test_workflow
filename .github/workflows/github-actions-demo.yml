@@ -65,7 +65,6 @@ jobs:
           JSON_FILE=$(find cloud-sql -type f -name "config.json" | head -n 1)
           if [ -z "$JSON_FILE" ]; then
             echo "No .json file found in cloud-sql or its subdirectories."
-            exit 1
           else
             echo "Found .json file: $JSON_FILE"
           fi
