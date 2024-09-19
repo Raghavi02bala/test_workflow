@@ -93,3 +93,7 @@ jobs:
           commit-message: created config file
           branch: feature-branch
           base: main
+
+      - name: Auto merge
+        run: |
+          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-number }} --m --d
