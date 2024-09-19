@@ -66,30 +66,13 @@ jobs:
         with: 
           files: "cloud-sql/**/config.json"
 
-      - name: file exists
-        if: steps.check_files.outputs.file_exists == 'true'
-        run: echo Argo CD file exists
-
-      - name: file does not exit
-        if: steps.check_files.outputs.file_exists == 'false'
-        run: |
-          mkdir -p "cloud-sql/deployments/${{ github.event.inputs.team_name }}"
-          echo '{
-            "environment": "${{ github.event.inputs.environment }}",
-            "team_id": "${{ github.event.inputs.team_id }}",
-            "team_name": "${{ github.event.inputs.team_name }}"
-          }' > "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
-
+      - name: Debug file existence
+        run: echo 'File exists ${{ steps.check_files.outputs.file_exists }}'
         
       - name: Commit kubeflow instance
         run: |
           git fetch origin
           git add "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
-
-      - name: Commit Cloud SQL instance
-        if: steps.check_files.outputs.file_exists == 'false'
-        run: |
-          git add "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
 
       - name: Push Files
         run: |
