@@ -60,14 +60,15 @@ jobs:
             "team_name": "${{ github.event.inputs.team_name }}"
           }' > "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
 
-      - name: Check if argoCD appset exists
-        id: check_files
-        uses: andstor/file-existence-action@v3
-        with: 
-          files: "cloud-sql/deployments/config.json"
-
-      - name: Debug file existence
-        run: echo 'File exists ${{ steps.check_files.outputs.file_exists }}'
+      - name: Check for argo CD config file
+        run: |
+          JSON_FILE=$(find cloud-sql -type f -name "config.json" | head -n 1)
+          if [ -z "$JSON_FILE" ]; then
+            echo "No .json file found in cloud-sql or its subdirectories."
+            exit 1
+          else
+            echo "Found .json file: $JSON_FILE"
+          fi
         
       - name: Commit kubeflow instance
         run: |
