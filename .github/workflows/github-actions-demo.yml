@@ -71,6 +71,9 @@ jobs:
             "team_id": "${{ github.event.inputs.team_id }}",
             "team_name": "${{ github.event.inputs.team_name }}"
           }' > "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
+
+          git fetch origin
+          git add "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
           else
             echo "Found .json file: $JSON_FILE"
           fi
