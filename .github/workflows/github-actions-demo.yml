@@ -72,7 +72,14 @@ jobs:
 
       - name: file does not exit
         if: steps.check_files.outputs.file_exists == 'false'
-        run: echo file does not exist
+        run: |
+          mkdir -p "cloud-sql/deployments/${{ github.event.inputs.team_name }}"
+          echo '{
+            "environment": "${{ github.event.inputs.environment }}",
+            "team_id": "${{ github.event.inputs.team_id }}",
+            "team_name": "${{ github.event.inputs.team_name }}"
+          }' > "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
+
         
       - name: Commit kubeflow instance
         run: |
