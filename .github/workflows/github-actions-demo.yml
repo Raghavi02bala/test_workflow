@@ -40,12 +40,14 @@ jobs:
           git config --global user.email 'github-actions@github.com'
 
       - name: Create a branch
-        run: | 
-          git checkout -b feature-branch
+        run: |
+          BRANCH_NAME="feature/${{ github.event.inputs.team_name }}-${{ github.event.inputs.initiative_id }}"
+          git checkout -b $BRANCH_NAME
 
       - name: Push feature-branch to origin
         run: |
-          git push -u origin feature-branch
+          BRANCH_NAME="feature/${{ github.event.inputs.team_name }}-${{ github.event.inputs.initiative_id }}"
+          git push -u origin $BRANCH_NAME
         
       - name: Create config.json
         run: |
@@ -91,7 +93,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: created config file
-          branch: feature-branch
+          branch: feature/${{ github.event.inputs.team_name }}-${{ github.event.inputs.initiative_id }}
           base: main
 
       - name: Auto merge
