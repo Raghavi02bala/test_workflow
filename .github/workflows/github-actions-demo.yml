@@ -87,7 +87,7 @@ jobs:
 
       - name: Push Files
         run: |
-          git commit -m 'Add config.json file'
+          git commit -m 'chore:create cloud sql and kubeflow instance config files'
           
       - name: Create a pull request
         uses: peter-evans/create-pull-request@v7
@@ -100,4 +100,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.pat_value }}
         run: |
-          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-number }} 
+          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-number }} -d
