@@ -3,7 +3,7 @@
   "hostname": "CA",
   "initiative_id": "7",
   "initiative_name": "init",
-  "k8s_namespace": "nul",
+  "k8s_namespace": "null",
   "team_id": "7",
   "team_name": "name"
 }
