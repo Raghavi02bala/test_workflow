@@ -18,9 +18,6 @@ on:
       k8s_namespace:
         description: 'K8s Namespace'
         required: true
-      team_id:
-        description: 'Team Id'
-        required: true
       team_name:
         description: 'Name of your team'
         required: true
@@ -58,7 +55,6 @@ jobs:
             "initiative_id": "${{ github.event.inputs.initiative_id }}",
             "initiative_name": "${{ github.event.inputs.initiative_name }}",
             "k8s_namespace": "${{ github.event.inputs.k8s_namespace }}",
-            "team_id": "${{ github.event.inputs.team_id }}",
             "team_name": "${{ github.event.inputs.team_name }}"
           }' > "kubeflow-pipelines/deployments/${{ github.event.inputs.team_name }}/${{ github.event.inputs.initiative_name }}/config.json"
 
@@ -70,7 +66,6 @@ jobs:
             mkdir -p "cloud-sql/deployments/${{ github.event.inputs.team_name }}"
             echo '{
             "environment": "${{ github.event.inputs.environment }}",
-            "team_id": "${{ github.event.inputs.team_id }}",
             "team_name": "${{ github.event.inputs.team_name }}"
           }' > "cloud-sql/deployments/${{ github.event.inputs.team_name }}/config.json"
 
