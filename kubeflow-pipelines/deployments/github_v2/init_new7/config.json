@@ -1,0 +1,8 @@
+{
+  "environment": "dev",
+  "hostname": "pipelines.mlops.ingka.com/github_v2/init_new7",
+  "initiative_id": "mlops-002",
+  "initiative_name": "init_new7",
+  "k8s_namespace": "mlops-002",
+  "team_name": "github_v2"
+}
