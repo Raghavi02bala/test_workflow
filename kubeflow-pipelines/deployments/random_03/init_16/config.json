@@ -1,8 +1,0 @@
-{
-  "environment": "dev",
-  "hostname": "pipelines.mlops.ingka.com/random_03/init_16",
-  "initiative_id": "mlops-006",
-  "initiative_name": "init_16",
-  "k8s_namespace": "mlops-006",
-  "team_name": "random_03"
-}
