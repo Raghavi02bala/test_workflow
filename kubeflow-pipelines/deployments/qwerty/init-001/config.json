@@ -1,0 +1,8 @@
+{
+  "environment": "test",
+  "hostname": "damn",
+  "initiative_id": "mlops-001",
+  "initiative_name": "init-001",
+  "k8s_namespace": "nilnil",
+  "team_name": "qwerty"
+}
