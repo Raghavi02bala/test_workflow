@@ -104,7 +104,19 @@ jobs:
             -d "client_id=${{ secrets.CLIENT_ID }}" \
             -d "client_secret=${{ secrets.CLIENT_SECRET }}" \
             -d "grant_type=client_credentials")
-          echo "Raw Response: $response"
           access_token=$(echo "$response" | jq -r '.access_token')
-          echo "Access Token: $access_token"
           echo "ACCESS_TOKEN=$access_token" >> $GITHUB_ENV
+      
+      - name: Create keycloak Client
+        env:
+          ACCESS_TOKEN: ${{ env.ACCESS_TOKEN }}
+        run: |
+          curl --location 'https://dev.auth.mlops.ingka.com/admin/realms/istio/clients' \
+          --header 'Content-Type: application/json' \
+          --header 'Authorization: Bearer $ACCESS_TOKEN' \
+          --data '    {
+            "clientId": "${{ github.event.inputs.initiative_id }}",
+            "rootUrl": "http://${{ github.event.inputs.initiative_id }}.${{ github.event.inputs.team_name }}.${{ github.event.inputs.environment }}.mlops.ingka.com",
+            "redirectUris": [
+              "http://${{ github.event.inputs.initiative_id }}.${{ github.event.inputs.team_name }}.${{ github.event.inputs.environment }}.mlops.ingka.com"
+              ]}'
