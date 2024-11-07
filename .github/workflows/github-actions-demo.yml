@@ -110,6 +110,7 @@ jobs:
       - name: Create keycloak Client
         env:
           ACCESS_TOKEN: ${{ env.ACCESS_TOKEN }}
+          ACTIONS_STEP_DEBUG: true
         run: |
           echo "::debug::ACCESS_TOKEN=$ACCESS_TOKEN"
           curl -s -X POST "https://dev.auth.mlops.ingka.com/admin/realms/istio/clients" \
