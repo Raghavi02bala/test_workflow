@@ -101,8 +101,8 @@ jobs:
         run: |
           response=$(curl -s -X POST "https://dev.auth.mlops.ingka.com/realms/istio/protocol/openid-connect/token" \
             -H 'Content-Type: application/x-www-form-urlencoded' \
-            -d "client_id= ${{ secrets.client_id }}" \
-            -d "client_secret= ${{ secrets.client_secret }}" \
+            -d "client_id= ${{ secrets.CLIENT_ID }}" \
+            -d "client_secret= ${{ secrets.CLIENT_SECRET }}" \
             -d "grant_type= client_credentials")
           access_token=$(echo "$response" | jq -r '.access_token')
           echo "Access Token: $access_token"
