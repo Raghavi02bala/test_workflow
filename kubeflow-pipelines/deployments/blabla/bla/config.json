@@ -1,0 +1,8 @@
+{
+  "environment": "devtest",
+  "hostname": "bla",
+  "initiative_id": "22",
+  "initiative_name": "bla",
+  "k8s_namespace": "blabla",
+  "team_name": "blabla"
+}
