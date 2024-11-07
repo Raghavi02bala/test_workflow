@@ -95,4 +95,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-number }} --merge --delete-branch 
+          gh pr merge ${{ steps.create-pull-request.outputs.pull-request-number }} --merge --delete-branch
+      
+      - name: Get keycloack Acess Token
+        run: |
+          response=$(curl -s -X POST "https://dev.auth.mlops.ingka.com/realms/istio/protocol/openid-connect/token" \
+            -H 'Content-Type: application/x-www-form-urlencoded' \
+            -d "client_id= ${{ secrets.client_id }}" \
+            -d "client_secret= ${{ secrets.client_secrets }}" \
+            -d "grant_type= client_credentials")
+          access_token=$(echo "$response" | jq -r '.access_token')
+          echo "Access Token: $access_token"
+          echo "ACCESS_TOKEN=$access_token" >> $GITHUB_ENV
