@@ -111,6 +111,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ env.ACCESS_TOKEN }}
         run: |
+          echo "::debug::ACCESS_TOKEN=$ACCESS_TOKEN"
           curl -s -X POST "https://dev.auth.mlops.ingka.com/admin/realms/istio/clients" \
           -H 'Content-Type: application/json' \
           -H 'Authorization: Bearer $ACCESS_TOKEN' \
