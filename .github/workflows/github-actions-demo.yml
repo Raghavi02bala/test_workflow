@@ -112,10 +112,10 @@ jobs:
           ACCESS_TOKEN: ${{ env.ACCESS_TOKEN }}
         run: |
           echo "Using Access Token: $ACCESS_TOKEN"
-          curl --location 'https://dev.auth.mlops.ingka.com/admin/realms/istio/clients' \
-          --header 'Content-Type: application/json' \
-          --header 'Authorization: Bearer $ACCESS_TOKEN' \
-          --data '{
+          curl -s -X POST 'https://dev.auth.mlops.ingka.com/admin/realms/istio/clients' \
+          -H 'Content-Type: application/json' \
+          -H 'Authorization: Bearer $ACCESS_TOKEN' \
+          -d '{
             "clientId": "${{ github.event.inputs.initiative_id }}",
             "rootUrl": "http://${{ github.event.inputs.initiative_id }}.${{ github.event.inputs.team_name }}.${{ github.event.inputs.environment }}.mlops.ingka.com",
             "redirectUris": [
