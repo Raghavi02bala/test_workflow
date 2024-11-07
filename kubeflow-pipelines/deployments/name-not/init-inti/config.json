@@ -1,0 +1,8 @@
+{
+  "environment": "dev",
+  "hostname": "raghsvdi",
+  "initiative_id": "mlops-220",
+  "initiative_name": "init-inti",
+  "k8s_namespace": "k8snamesosod",
+  "team_name": "name-not"
+}
