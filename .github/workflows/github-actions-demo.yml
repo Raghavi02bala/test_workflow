@@ -111,4 +111,6 @@ jobs:
         env:
           client_id: ${{ secrets.CLIENT_ID }}
           client_secret: ${{ secrets.CLIENT_SECRET }}
-        run: python scripts/sample.py       
+        run: |
+          output=$(python scripts/sample.py)
+          echo "Script output: $output"
