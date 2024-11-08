@@ -115,5 +115,4 @@ jobs:
           TEAM_NAME: ${{ github.event.inputs.team_name }}
           ENVIRONMENT: ${{ github.event.inputs.environment }}
         run: |
-          output=$(python scripts/sample.py)
-          echo "Script output: $output"
+          python scripts/sample.py | tee /dev/tty
