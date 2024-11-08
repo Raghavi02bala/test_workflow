@@ -1,8 +1,8 @@
 import requests 
 import os
 
-client_id = os.environ("CLIENT_ID")
-client_secret = os.environ("CLIENT_SECRET")
+client_id = os.environ["CLIENT_ID"]
+client_secret = os.environ["CLIENT_SECRET"]
 
 def create_access_token():
   url = "https://dev.auth.mlops.ingka.com/realms/istio/protocol/openid-connect/token"
