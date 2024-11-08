@@ -1,0 +1,8 @@
+{
+  "environment": "dev",
+  "hostname": "host-040",
+  "initiative_id": "initiative-id-005",
+  "initiative_name": "initiative-name-40",
+  "k8s_namespace": "ks8dfjjf",
+  "team_name": "mlops-01"
+}
