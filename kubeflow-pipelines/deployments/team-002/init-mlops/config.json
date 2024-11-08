@@ -1,0 +1,8 @@
+{
+  "environment": "dev-dve",
+  "hostname": "host-mlops",
+  "initiative_id": "init-id-mlops",
+  "initiative_name": "init-mlops",
+  "k8s_namespace": "k8s namespace",
+  "team_name": "team-002"
+}
