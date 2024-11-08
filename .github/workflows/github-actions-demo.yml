@@ -111,6 +111,9 @@ jobs:
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          INITIATIVE_ID: ${{ github.event.inputs.initiative_id }}
+          TEAM_NAME: ${{ github.event.inputs.team_name }}
+          ENV: ${{ github.event.inputs.environment }}
         run: |
           output=$(python scripts/sample.py)
           echo "Script output: $output"
