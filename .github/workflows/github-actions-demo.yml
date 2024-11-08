@@ -109,8 +109,8 @@ jobs:
       
       - name: Run Script to create keycloack client
         env:
-          client_id: ${{ secrets.CLIENT_ID }}
-          client_secret: ${{ secrets.CLIENT_SECRET }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: |
           output=$(python scripts/sample.py)
           echo "Script output: $output"
