@@ -1,5 +1,6 @@
 import requests 
 import os
+import json
 
 client_id = os.getenv("CLIENT_ID")
 client_secret = os.getenv("CLIENT_SECRET")
@@ -34,6 +35,7 @@ def create_client():
   }
 
   response = requests.request("POST", url, headers=headers, data=payload)
-  print(response.json())
-  return response.json()
+  return response
+
+create_client()
   
