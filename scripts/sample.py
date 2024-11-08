@@ -10,9 +10,9 @@ def create_access_token():
   headers = {
   'Content-Type': 'application/x-www-form-urlencoded'
   }
-
+  
   response = requests.request("POST", url, headers=headers, data=payload)
-  return response
+  return client_id, client_secret
 
 print(create_access_token())
 
