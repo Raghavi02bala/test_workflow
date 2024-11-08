@@ -1,0 +1,8 @@
+{
+  "environment": "dev",
+  "hostname": "host-001",
+  "initiative_id": "id-init-006",
+  "initiative_name": "nmae-of-ev",
+  "k8s_namespace": "namespace-k8s",
+  "team_name": "team-004"
+}
