@@ -34,4 +34,6 @@ def create_client():
   }
 
   response = requests.request("POST", url, headers=headers, data=payload)
+  print(response.json())
   return response.json()
+  
