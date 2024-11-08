@@ -14,4 +14,5 @@ def create_access_token():
   response = requests.request("POST", url, headers=headers, data=payload)
   return response
 
+print(create_access_token())
 
