@@ -117,7 +117,7 @@ jobs:
           service_account: kubeflow-instance-sa@ingka-mlops-observability-dev.iam.gserviceaccount.com
           create_credentials_file: true
       
-      - name: Run Script to create keycloack client
+      - name: Run Script to create keycloack client and update firestore
         env:
           CLIENT_ID: ${{ secrets.CLIENT_ID }}
           CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
