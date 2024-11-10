@@ -106,6 +106,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install requests
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        id: auth
+        with:
+          workload_identity_provider: projects/490045624197/locations/global/workloadIdentityPools/github/providers/github-provider
+          service_account: kubeflow-instance-sa@ingka-mlops-observability-dev.iam.gserviceaccount.com
+          create_credentials_file: true
       
       - name: Run Script to create keycloack client
         env:
