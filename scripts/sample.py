@@ -73,5 +73,6 @@ def update_firestore():
   metadata=db.collection(collection_name).document(doc_id)
   metadata.update({"cilent_id":f"client-{initiative_id}"})
   metadata.update({"client_sceret": client_sceret})
-  
+
+update_firestore()
   
